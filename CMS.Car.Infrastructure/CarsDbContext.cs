@@ -6,8 +6,14 @@ using System.Text;
 
 namespace CMS.Cars.Infrastructure
 {
-    class CarsDbContext
+    public class CarsDbContext: DbContext
     {
         public DbSet<Car> Cars { get; set; }
+
+        public CarsDbContext(DbContextOptions<CarsDbContext> options)
+            :base(options)
+        {
+
+        }
     }
 }

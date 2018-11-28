@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using CMS.Cars;
+using CMS.Cars.Infrastructure;
 using CMS.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CMS.Api
@@ -18,6 +20,10 @@ namespace CMS.Api
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            var connection = @"Server=localhost;Database=CMS;User Id=sa; Password=password123!;";
+            services.AddDbContext<CarsDbContext>
+                (options => options.UseSqlServer(connection));
+
             services.AddMvc();
         }
         

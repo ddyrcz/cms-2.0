@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CMS.Car.Infrastructure\CMS.Cars.Infrastructure.csproj" />
     <ProjectReference Include="..\CMS.Core\CMS.Core.csproj" />
   </ItemGroup>
 
