@@ -7,6 +7,6 @@ namespace CMS.Cars.Application.Command
 {
     public class CreateCarCommand : ICommand
     {
-
+        public string Description { get; set; } = "Ford Fusion";
     }
 }

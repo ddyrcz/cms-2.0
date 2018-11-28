@@ -22,11 +22,9 @@ namespace CMS.Api.Controllers
         }
 
         [HttpPost]
-        public async Task Create()
+        public async Task Create(CreateCarCommand request)
         {
-            var command = new CreateCarCommand();
-
-            await _bus.Send(command);
+            await _bus.Send(request);
         }
     }
 }

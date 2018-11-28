@@ -1,3 +1,5 @@
+using CMS.Cars.Domain;
+using CMS.Cars.Infrastructure;
 using CMS.Core;
 using System;
 using System.Collections.Generic;
@@ -8,9 +10,27 @@ namespace CMS.Cars.Application.Command
 {
     class CreateCarCommandHandler : ICommandHandler<CreateCarCommand>
     {
-        public Task Handle(CreateCarCommand command)
+        private readonly CarsDbContext _context;
+
+        public CreateCarCommandHandler(CarsDbContext context)
         {
-            return Task.CompletedTask;
+            _context = context;
+        }
+
+        public async Task Handle(CreateCarCommand command)
+        {
+            var car = new Car(Guid.NewGuid(),
+                command.Description,
+                "123",
+                "456",
+                DateTime.Now,
+                DateTime.Now,
+                null,
+                null,
+                null);
+
+            _context.Add(car);
+            await _context.SaveChangesAsync();
         }
     }
 }

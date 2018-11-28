@@ -9,6 +9,8 @@ namespace CMS.Core
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<CommandBus>().AsImplementedInterfaces();
+
             builder.Register<Func<ICommand, ICommandHandler>>(context =>
             {
                 var resolvedContext = context.Resolve<IComponentContext>();
