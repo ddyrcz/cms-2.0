@@ -21,13 +21,13 @@ namespace CMS.Cars.Application.Command
         {
             var car = new Car(Guid.NewGuid(),
                 command.Description,
-                "123",
-                "456",
-                DateTime.Now,
-                DateTime.Now,
-                null,
-                null,
-                null);
+                command.RegistrationNumber,
+                command.VinNumber,
+                command.TermTechnicalResearch,
+                command.OcExpiry,
+                command.AcExpiry,
+                command.LiftUdtExpiry,
+                command.TachoLegalizationExpiry);
 
             _context.Add(car);
             await _context.SaveChangesAsync();
