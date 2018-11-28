@@ -1,9 +1,9 @@
-﻿using CMS.Core;
+using CMS.Core;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CMS.Cars
+namespace CMS.Cars.Application.Command
 {
     public class CreateCarCommand : ICommand
     {

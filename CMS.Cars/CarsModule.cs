@@ -1,10 +1,17 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CMS.Cars
+namespace CMS.Cars.Application
 {
-    class CarsModule
+    public class CarsModule : Module
     {
+        protected override void Load(ContainerBuilder builder)
+        {
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                .Where(service => service.Name.EndsWith("CommandHandler"))
+                .AsImplementedInterfaces();
+        }
     }
 }

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using CMS.Cars;
+using CMS.Cars.Application;
+using CMS.Cars.Application.Command;
 using CMS.Cars.Infrastructure;
 using CMS.Core;
 using Microsoft.AspNetCore.Builder;
@@ -40,29 +42,8 @@ namespace CMS.Api
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterAssemblyTypes(typeof(CreateCarCommand).Assembly)
-                .Where(service => service.Name.EndsWith("CommandHandler"))
-                .AsImplementedInterfaces();
-
-            builder.RegisterType(typeof(CommandBus)).AsImplementedInterfaces();
-
-            builder.Register<Func<ICommand, ICommandHandler>>(context =>
-            {
-                var resolvedContext = context.Resolve<IComponentContext>();
-
-                return command =>
-                {
-                    var commandType = command.GetType();
-
-                    var commmandHandlerType = typeof(ICommandHandler<>)
-                        .MakeGenericType(commandType);
-
-                    var commandHandler = (ICommandHandler)resolvedContext
-                        .Resolve(commmandHandlerType);
-
-                    return commandHandler;
-                };
-            });
+            builder.RegisterModule<CoreModule>();
+            builder.RegisterModule<CarsModule>();
         }
     }
 }

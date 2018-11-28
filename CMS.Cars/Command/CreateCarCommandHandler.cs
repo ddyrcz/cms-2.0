@@ -1,10 +1,10 @@
-﻿using CMS.Core;
+using CMS.Core;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMS.Cars
+namespace CMS.Cars.Application.Command
 {
     class CreateCarCommandHandler : ICommandHandler<CreateCarCommand>
     {
