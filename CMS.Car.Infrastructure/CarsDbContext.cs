@@ -15,5 +15,21 @@ namespace CMS.Cars.Infrastructure
         {
 
         }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Car>()
+                .Property(x => x.OcExpiry).HasColumnType("date");
+            modelBuilder.Entity<Car>()
+                .Property(x => x.AcExpiry).HasColumnType("date");
+            modelBuilder.Entity<Car>()
+                .Property(x => x.LiftUdtExpiry).HasColumnType("date");
+            modelBuilder.Entity<Car>()
+                .Property(x => x.TachoLegalizationExpiry).HasColumnType("date");
+            modelBuilder.Entity<Car>()
+                .Property(x => x.TermTechnicalResearch).HasColumnType("date");
+        }
+
     }
 }

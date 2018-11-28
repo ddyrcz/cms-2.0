@@ -4,14 +4,16 @@ using CMS.Cars.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CMS.Cars.Infrastructure.Migrations
 {
     [DbContext(typeof(CarsDbContext))]
-    partial class CarsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181128212930_Change_Oc_Column_Type")]
+    partial class Change_Oc_Column_Type
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,24 +26,20 @@ namespace CMS.Cars.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime?>("AcExpiry")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("AcExpiry");
 
                     b.Property<string>("Description");
 
-                    b.Property<DateTime?>("LiftUdtExpiry")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("LiftUdtExpiry");
 
                     b.Property<DateTime>("OcExpiry")
                         .HasColumnType("date");
 
                     b.Property<string>("RegistrationNumber");
 
-                    b.Property<DateTime?>("TachoLegalizationExpiry")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("TachoLegalizationExpiry");
 
-                    b.Property<DateTime>("TermTechnicalResearch")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("TermTechnicalResearch");
 
                     b.Property<string>("VinNumber");
 
