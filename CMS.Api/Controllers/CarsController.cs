@@ -26,5 +26,10 @@ namespace CMS.Api.Controllers
         {
             await _bus.Send(request);
         }
+
+        [HttpGet]
+        public string GetString(){
+            return "Cars controller works!";
+        }
     }
 }
