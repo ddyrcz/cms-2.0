@@ -11,25 +11,15 @@ namespace CMS.Core
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<CommandBus>().AsImplementedInterfaces();
+            builder.RegisterType<QueryBus>().AsImplementedInterfaces();
 
-            builder.Register<Func<ICommand, ICommandHandler>>(context =>
-            {
-                var resolvedContext = context.Resolve<IComponentContext>();
+            RegisterCommandHandlerFactory(builder);
 
-                return command =>
-                {
-                    var commandType = command.GetType();
+            RegisterQueryHandlerFactory(builder);
+        }
 
-                    var commmandHandlerType = typeof(ICommandHandler<>)
-                        .MakeGenericType(commandType);
-
-                    var commandHandler = (ICommandHandler)resolvedContext
-                        .Resolve(commmandHandlerType);
-
-                    return commandHandler;
-                };
-            });
-
+        private static void RegisterQueryHandlerFactory(ContainerBuilder builder)
+        {
             builder.Register<Func<IQuery, IQueryHandler>>(context =>
             {
                 var resolvedContext = context.Resolve<IComponentContext>();
@@ -43,6 +33,27 @@ namespace CMS.Core
 
                     var commandHandler = (IQueryHandler)resolvedContext
                         .Resolve(queryHandlerType);
+
+                    return commandHandler;
+                };
+            });
+        }
+
+        private static void RegisterCommandHandlerFactory(ContainerBuilder builder)
+        {
+            builder.Register<Func<ICommand, ICommandHandler>>(context =>
+            {
+                var resolvedContext = context.Resolve<IComponentContext>();
+
+                return command =>
+                {
+                    var commandType = command.GetType();
+
+                    var commmandHandlerType = typeof(ICommandHandler<>)
+                        .MakeGenericType(commandType);
+
+                    var commandHandler = (ICommandHandler)resolvedContext
+                        .Resolve(commmandHandlerType);
 
                     return commandHandler;
                 };

@@ -10,7 +10,9 @@ namespace CMS.Cars.Application
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterAssemblyTypes(ThisAssembly)
-                .Where(service => service.Name.EndsWith("CommandHandler"))
+                .Where(service => 
+                    service.Name.EndsWith("CommandHandler") ||
+                    service.Name.EndsWith("QueryHandler"))
                 .AsImplementedInterfaces();
         }
     }
