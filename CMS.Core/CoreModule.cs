@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using CMS.Core.Query;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,7 +28,25 @@ namespace CMS.Core
 
                     return commandHandler;
                 };
-            }); 
+            });
+
+            builder.Register<Func<IQuery, IQueryHandler>>(context =>
+            {
+                var resolvedContext = context.Resolve<IComponentContext>();
+
+                return query =>
+                {
+                    var queryType = query.GetType();
+
+                    var queryHandlerType = typeof(IQueryHandler<>)
+                        .MakeGenericType(queryType);
+
+                    var commandHandler = (IQueryHandler)resolvedContext
+                        .Resolve(queryHandlerType);
+
+                    return commandHandler;
+                };
+            });
         }
     }
 }
