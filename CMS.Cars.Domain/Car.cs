@@ -5,7 +5,7 @@ namespace CMS.Cars.Domain
     public class Car
     {
         public Car(Guid id, 
-            string description, 
+            string name, 
             string registrationNumber, 
             string vinNumber,
             DateTime termTechnicalResearch, 
@@ -15,7 +15,7 @@ namespace CMS.Cars.Domain
             DateTime? tachoLegalizationExpiry)
         {
             Id = id;
-            Description = description;
+            Name = name;
             RegistrationNumber = registrationNumber;
             VinNumber = vinNumber;
             TermTechnicalResearch = termTechnicalResearch;
@@ -26,7 +26,7 @@ namespace CMS.Cars.Domain
         }
 
         public Guid Id { get; private set; }
-        public string Description { get; private set; }
+        public string Name { get; private set; }
         public string RegistrationNumber { get; private set; }
         public string VinNumber { get; private set; }
         public DateTime TermTechnicalResearch { get; private set; }

@@ -22,7 +22,7 @@ namespace CMS.Cars.Application.Query.GetCars
         public async Task<IQueryResult> Handle(GetCarsQuery query)
         {
             var cars = await _dbContext.Cars
-                .Select(car => new GetCarsQueryResult.Car(car.Id, car.Description, false))
+                .Select(car => new GetCarsQueryResult.Car(car.Id, car.Name, false))
                 .ToListAsync();
 
             return new GetCarsQueryResult
