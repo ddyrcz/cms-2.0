@@ -17,8 +17,16 @@ namespace CMS.Cars.Application.Query.GetCars
 
         public class Car
         {
-            public Guid Id { get; set; }
-            public string Name { get; set; }
+            public Car(Guid id, string name, bool approachingExpiration)
+            {
+                Id = id;
+                Name = name;
+                ApproachingExpiration = approachingExpiration;
+            }
+
+            public Guid Id { get; }
+            public string Name { get;}
+            public bool ApproachingExpiration { get;  }
         }
     }
 }

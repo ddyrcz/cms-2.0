@@ -1,7 +1,10 @@
-﻿using CMS.Core.Query;
+﻿using CMS.Cars.Infrastructure;
+using CMS.Core.Query;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,19 +12,23 @@ namespace CMS.Cars.Application.Query.GetCars
 {
     public class GetCarsQueryHandler : IQueryHandler<GetCarsQuery>
     {
-        public Task<IQueryResult> Handle(GetCarsQuery query)
+        private readonly CarsDbContext _dbContext;
+
+        public GetCarsQueryHandler(CarsDbContext dbContext)
         {
-            var result = new GetCarsQueryResult();
+            _dbContext = dbContext;
+        }
 
-            result.Cars = new List<GetCarsQueryResult.Car>()
+        public async Task<IQueryResult> Handle(GetCarsQuery query)
+        {
+            var cars = await _dbContext.Cars
+                .Select(car => new GetCarsQueryResult.Car(car.Id, car.Description, false))
+                .ToListAsync();
+
+            return new GetCarsQueryResult
             {
-                new GetCarsQueryResult.Car{
-                    Id = Guid.NewGuid(),
-                    Name = "Audi A6"
-                }
+                Cars = cars
             };
-
-            return Task.FromResult(result as IQueryResult);
         }
     }
 }
