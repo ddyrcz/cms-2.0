@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -21,6 +22,13 @@ namespace CMS.Api
 {
     public class Startup
     {
+        private readonly IConfiguration _configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = @"Server=localhost;Database=CMS;User Id=sa; Password=password123!;";
@@ -34,7 +42,7 @@ namespace CMS.Api
 
             services.AddMvc();
         }
-        
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -59,7 +67,7 @@ namespace CMS.Api
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterModule<CoreModule>();
-            builder.RegisterModule<CarsModule>();
+            builder.RegisterModule(new CarsModule { Configuration = _configuration });
         }
     }
 }

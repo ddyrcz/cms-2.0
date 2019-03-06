@@ -13,6 +13,11 @@ namespace CMS.Cars.Application.Query.GetCars
 
     public class GetCarsQueryResult : IQueryResult
     {
+        public GetCarsQueryResult()
+        {
+            Cars = new List<Car>();
+        }
+
         public List<Car> Cars { get; set; }
 
         public class Car

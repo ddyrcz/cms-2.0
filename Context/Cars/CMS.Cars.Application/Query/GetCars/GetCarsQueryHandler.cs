@@ -1,4 +1,5 @@
-﻿using CMS.Cars.Infrastructure;
+﻿using CMS.Cars.Domain;
+using CMS.Cars.Infrastructure;
 using CMS.Core.Query;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,24 +14,32 @@ namespace CMS.Cars.Application.Query.GetCars
     public class GetCarsQueryHandler : IQueryHandler<GetCarsQuery>
     {
         private readonly CarsDbContext _dbContext;
+        private readonly Configuration _configuration;
 
-        public GetCarsQueryHandler(CarsDbContext dbContext)
+        public GetCarsQueryHandler(CarsDbContext dbContext,
+            Configuration configuration)
         {
             _dbContext = dbContext;
+            _configuration = configuration;
         }
 
         public async Task<IQueryResult> Handle(GetCarsQuery query)
         {
-            var carsProjection = await _dbContext.Cars
-                .Select(car => new { car.Id, car.Name })
+            var cars = await _dbContext.Cars
                 .ToListAsync();
 
-            foreach (var car in carsProjection)
-            {
+            var result = new GetCarsQueryResult();
 
+            foreach (var car in cars)
+            {
+                bool expirationApproaching = car.IsExpirationApproaching(_configuration.ApproachingExpirationDaysBefore);
+
+                result.Cars.Add(new GetCarsQueryResult.Car(car.Id,
+                    car.Name,
+                    expirationApproaching));
             }
 
-            return null;
+            return result;
         }
     }
 }
