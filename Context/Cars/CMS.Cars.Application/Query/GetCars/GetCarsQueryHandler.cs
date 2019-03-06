@@ -30,10 +30,7 @@ namespace CMS.Cars.Application.Query.GetCars
 
             }
 
-            return new GetCarsQueryResult
-            {
-                Cars = cars
-            };
+            return null;
         }
     }
 }
