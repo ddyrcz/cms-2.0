@@ -22,15 +22,20 @@ namespace CMS.Cars.Application.Query.GetCars
 
         public class Car
         {
-            public Car(Guid id, string name, bool approachingExpiration)
+            public Car(Guid id,
+                string name,
+                string registrationNumber,
+                bool approachingExpiration)
             {
                 Id = id;
                 Name = name;
+                RegistrationNumber = registrationNumber;
                 ApproachingExpiration = approachingExpiration;
             }
 
             public Guid Id { get; }
             public string Name { get;}
+            public string RegistrationNumber { get; }
             public bool ApproachingExpiration { get;  }
         }
     }

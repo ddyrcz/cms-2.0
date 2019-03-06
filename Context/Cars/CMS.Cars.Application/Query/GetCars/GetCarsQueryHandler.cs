@@ -36,6 +36,7 @@ namespace CMS.Cars.Application.Query.GetCars
 
                 result.Cars.Add(new GetCarsQueryResult.Car(car.Id,
                     car.Name,
+                    car.RegistrationNumber,
                     expirationApproaching));
             }
 
