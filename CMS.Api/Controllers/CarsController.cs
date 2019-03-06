@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CMS.Cars;
 using CMS.Cars.Application.Command;
+using CMS.Cars.Application.Query.GetCarDetails;
 using CMS.Cars.Application.Query.GetCars;
 using CMS.Core;
 using CMS.Core.Query;
@@ -41,5 +42,16 @@ namespace CMS.Api.Controllers
 
             return result as GetCarsQueryResult;
         }
+
+        [HttpGet("{id}")]
+        public async Task<GetCarDetailsQueryResult> GetCarDetails(Guid id)
+        {
+            var query = new GetCarDetailsQuery(id);
+
+            var result = await _queryBus.SendQuery(query);
+
+            return result as GetCarDetailsQueryResult;
+        }
+
     }
 }
