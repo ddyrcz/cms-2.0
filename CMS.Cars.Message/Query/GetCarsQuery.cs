@@ -1,10 +1,10 @@
-﻿using CMS.Core.Query;
+using CMS.Core.Query;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Text;
 
-namespace CMS.Cars.Application.Query.GetCars
+namespace CMS.Cars.Message.Query
 {
     public class GetCarsQuery : IQuery
     {

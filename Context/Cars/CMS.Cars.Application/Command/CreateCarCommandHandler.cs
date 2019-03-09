@@ -1,5 +1,6 @@
 using CMS.Cars.Domain;
 using CMS.Cars.Infrastructure;
+using CMS.Cars.Message.Commands;
 using CMS.Core;
 using System;
 using System.Collections.Generic;

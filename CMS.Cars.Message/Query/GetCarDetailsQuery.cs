@@ -1,9 +1,9 @@
-﻿using CMS.Core.Query;
+using CMS.Core.Query;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CMS.Cars.Application.Query.GetCarDetails
+namespace CMS.Cars.Message.Query
 {
     public class GetCarDetailsQuery : IQuery
     {

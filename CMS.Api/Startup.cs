@@ -7,8 +7,6 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using CMS.Cars;
 using CMS.Cars.Application;
-using CMS.Cars.Application.Command;
-using CMS.Cars.Infrastructure;
 using CMS.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,10 +29,6 @@ namespace CMS.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Server=localhost;Database=CMS;User Id=sa; Password=password123!;";
-            services.AddDbContext<CarsDbContext>
-                (options => options.UseSqlServer(connection));
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "CMS Api", Version = "v1" });

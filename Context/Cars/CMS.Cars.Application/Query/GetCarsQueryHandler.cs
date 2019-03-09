@@ -1,5 +1,6 @@
-﻿using CMS.Cars.Domain;
+using CMS.Cars.Domain;
 using CMS.Cars.Infrastructure;
+using CMS.Cars.Message.Query;
 using CMS.Core.Query;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMS.Cars.Application.Query.GetCars
+namespace CMS.Cars.Application.Query
 {
     public class GetCarsQueryHandler : IQueryHandler<GetCarsQuery>
     {

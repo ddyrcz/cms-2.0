@@ -1,4 +1,5 @@
-﻿using CMS.Cars.Infrastructure;
+using CMS.Cars.Infrastructure;
+using CMS.Cars.Message.Query;
 using CMS.Core.Query;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMS.Cars.Application.Query.GetCarDetails
+namespace CMS.Cars.Application.Query
 {
     class GetCarDetailsQueryHandler : IQueryHandler<GetCarDetailsQuery>
     {

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CMS.Cars;
-using CMS.Cars.Application.Command;
-using CMS.Cars.Application.Query.GetCarDetails;
-using CMS.Cars.Application.Query.GetCars;
+using CMS.Cars.Message.Commands;
+using CMS.Cars.Message.Query;
 using CMS.Core;
 using CMS.Core.Query;
 using Microsoft.AspNetCore.Http;
@@ -34,7 +33,7 @@ namespace CMS.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<GetCarsQueryResult> GetCars()
+        public async Task<GetCarsQueryResult> GetAll()
         {
             var getCarsQuery = new GetCarsQuery();
             
@@ -44,7 +43,7 @@ namespace CMS.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<GetCarDetailsQueryResult> GetCarDetails(Guid id)
+        public async Task<GetCarDetailsQueryResult> GetDetails(Guid id)
         {
             var query = new GetCarDetailsQuery(id);
 
@@ -52,6 +51,5 @@ namespace CMS.Api.Controllers
 
             return result as GetCarDetailsQueryResult;
         }
-
     }
 }
