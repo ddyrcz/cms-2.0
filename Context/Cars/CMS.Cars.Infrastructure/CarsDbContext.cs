@@ -29,6 +29,8 @@ namespace CMS.Cars.Infrastructure
                 .Property(x => x.TachoLegalizationExpiry).HasColumnType("date");
             modelBuilder.Entity<Car>()
                 .Property(x => x.TermTechnicalResearch).HasColumnType("date");
+
+            modelBuilder.Entity<Car>().HasData(SeedData.Cars);
         }
 
     }

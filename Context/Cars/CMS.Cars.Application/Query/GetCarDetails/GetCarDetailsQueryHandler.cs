@@ -13,7 +13,7 @@ namespace CMS.Cars.Application.Query.GetCarDetails
     {
         private readonly CarsDbContext _dbContext;
 
-        public GetCarDetailsQueryHandler(CarsDbContext dbContext )
+        public GetCarDetailsQueryHandler(CarsDbContext dbContext)
         {
             _dbContext = dbContext;
         }
