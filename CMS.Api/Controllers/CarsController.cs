@@ -51,5 +51,11 @@ namespace CMS.Api.Controllers
 
             return result as GetCarDetailsQueryResult;
         }
+
+        [HttpPut]
+        public async Task Update(UpdateCarCommand request)
+        {
+            await _commandBus.Send(request);
+        }
     }
 }

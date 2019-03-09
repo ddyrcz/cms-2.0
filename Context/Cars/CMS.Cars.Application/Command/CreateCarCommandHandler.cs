@@ -21,7 +21,7 @@ namespace CMS.Cars.Application.Command
         public async Task Handle(CreateCarCommand command)
         {
             var car = new Car(Guid.NewGuid(),
-                command.Description,
+                command.Name,
                 command.RegistrationNumber,
                 command.VinNumber,
                 command.TermTechnicalResearch,

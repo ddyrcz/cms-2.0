@@ -34,5 +34,30 @@ namespace CMS.Cars.Domain
         public DateTime? AcExpiry { get; private set; }
         public DateTime? LiftUdtExpiry { get; private set; }
         public DateTime? TachoLegalizationExpiry { get; private set; }
+
+        public void UpdateIdentificationData(string name,
+            string registrationNumber)
+        {
+            Name = name;
+            RegistrationNumber = registrationNumber;
+        }
+
+        public void UpdateVinNumber(string vinNumber)
+        {
+            VinNumber = vinNumber;
+        }
+
+        public void UpdateDates(DateTime termTechnicalResearch,
+            DateTime ocExpiry,
+            DateTime? acExpiry,
+            DateTime? liftUdtExpiry,
+            DateTime? tachoLegalizationExpiry)
+        {
+            TermTechnicalResearch = termTechnicalResearch;
+            OcExpiry = ocExpiry;
+            AcExpiry = acExpiry;
+            LiftUdtExpiry = liftUdtExpiry;
+            TachoLegalizationExpiry = tachoLegalizationExpiry;
+        }
     }
 }

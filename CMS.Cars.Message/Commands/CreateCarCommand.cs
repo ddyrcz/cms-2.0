@@ -7,7 +7,7 @@ namespace CMS.Cars.Message.Commands
 {
     public class CreateCarCommand : ICommand
     {
-        public string Description { get; set; }
+        public string Name { get; set; }
         public string RegistrationNumber { get; set; }
         public string VinNumber { get; set; }
         public DateTime TermTechnicalResearch { get; set; }
