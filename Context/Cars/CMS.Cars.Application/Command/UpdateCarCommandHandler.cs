@@ -24,9 +24,7 @@ namespace CMS.Cars.Application.Command
 
             car.UpdateIdentificationData(command.Name,
                 command.RegistrationNumber);
-
-            car.UpdateVinNumber(command.VinNumber);
-
+            
             car.UpdateDates(command.TermTechnicalResearch,
                 command.OcExpiry,
                 command.AcExpiry,

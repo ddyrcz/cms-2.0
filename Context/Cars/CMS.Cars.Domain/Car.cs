@@ -40,12 +40,7 @@ namespace CMS.Cars.Domain
         {
             Name = name;
             RegistrationNumber = registrationNumber;
-        }
-
-        public void UpdateVinNumber(string vinNumber)
-        {
-            VinNumber = vinNumber;
-        }
+        }        
 
         public void UpdateDates(DateTime termTechnicalResearch,
             DateTime ocExpiry,
