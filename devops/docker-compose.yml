@@ -4,10 +4,7 @@ services:
     image: microsoft/mssql-server-linux
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=password123!
-      - MSSQL_PID=Express 
-    ports:
-      - 1433:1433
+      - MSSQL_PID=Express
     volumes:
       - sqlvolume:/var/opt/mssql
 volumes:

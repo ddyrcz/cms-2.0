@@ -1,7 +1,0 @@
-version: '3'
-services:
-  cms-backend:
-    build: .
-    ports:
-      - 8080:80
-    container_name: cms-api
