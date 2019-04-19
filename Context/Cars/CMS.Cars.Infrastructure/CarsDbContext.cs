@@ -16,7 +16,6 @@ namespace CMS.Cars.Infrastructure
 
         }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Car>()

@@ -17,9 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CMS.Cars.Autofac\CMS.Cars.Autofac.csproj" />
-    <ProjectReference Include="..\CMS.Cars.Message\CMS.Cars.Message.csproj" />
+    <ProjectReference Include="..\Context\Cars\CMS.Cars.Autofac\CMS.Cars.Autofac.csproj" />
     <ProjectReference Include="..\CMS.Core\CMS.Core.csproj" />
+    <ProjectReference Include="..\Context\Cars\CMS.Cars.Message\CMS.Cars.Message.csproj" />
   </ItemGroup>
 
 </Project>

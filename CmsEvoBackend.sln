@@ -25,9 +25,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Car", "Car", "{898C7FA7-B7B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMS.Cars.Domain.Tests", "Test\Car\CMS.Cars.Domain.Tests\CMS.Cars.Domain.Tests.csproj", "{79C8D8C1-AC47-4ADE-BF45-AC1010E43A32}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMS.Cars.Message", "CMS.Cars.Message\CMS.Cars.Message.csproj", "{7FE8AEA6-B75F-4224-B4D4-ACB41526CC98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMS.Cars.Message", "Context\Cars\CMS.Cars.Message\CMS.Cars.Message.csproj", "{7FE8AEA6-B75F-4224-B4D4-ACB41526CC98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.Cars.Autofac", "CMS.Cars.Autofac\CMS.Cars.Autofac.csproj", "{302B847D-CCDB-4E69-96FA-59542C5C92FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.Cars.Autofac", "Context\Cars\CMS.Cars.Autofac\CMS.Cars.Autofac.csproj", "{302B847D-CCDB-4E69-96FA-59542C5C92FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

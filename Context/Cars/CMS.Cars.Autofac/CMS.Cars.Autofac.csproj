@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -9,8 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Context\Cars\CMS.Cars.Application\CMS.Cars.Application.csproj" />
+    <ProjectReference Include="..\CMS.Cars.Application\CMS.Cars.Application.csproj" />
   </ItemGroup>
+
+
 
   <ItemGroup>
     <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
