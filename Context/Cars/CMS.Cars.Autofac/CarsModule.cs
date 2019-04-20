@@ -15,13 +15,7 @@ namespace CMS.Cars.Application
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c =>
-            {
-                var opt = new DbContextOptionsBuilder<CarsDbContext>();
-                opt.UseSqlServer(Configuration.GetValue<string>("ConnectionStrings:CarsDbConnectionString"));
-
-                return new CarsDbContext(opt.Options);
-            }).AsSelf().InstancePerLifetimeScope();
+            RegisterDbContext(builder);
 
             builder.RegisterAssemblyTypes(typeof(ApplicationProjectMarker).Assembly)
                 .Where(service =>
@@ -35,6 +29,22 @@ namespace CMS.Cars.Application
             };
 
             builder.RegisterInstance(configuration).AsSelf();
+        }
+
+        private void RegisterDbContext(ContainerBuilder builder)
+        {
+            var dbContextOptionsBuilder = new DbContextOptionsBuilder<CarsDbContext>();
+            dbContextOptionsBuilder.UseSqlServer(Configuration.GetValue<string>("ConnectionStrings:CarsDbConnectionString"));
+
+            var dbContextOptions = dbContextOptionsBuilder.Options;
+
+            // DbContextOptions are required by EF Core tools
+            builder.RegisterInstance(dbContextOptions)
+                .As<DbContextOptions>();
+
+            builder.Register(c => new CarsDbContext(dbContextOptions))
+                .AsSelf()
+                .InstancePerLifetimeScope();
         }
     }
 }
