@@ -50,10 +50,35 @@ namespace CMS.Cars.Infrastructure.Migrations
                     b.ToTable("Cars");
 
                     b.HasData(
-                        new { Id = new Guid("c51ba791-541f-47ec-99b8-eec4c854d183"), Name = "Ford Fusion", OcExpiry = new DateTime(2019, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), RegistrationNumber = "SLU 55NL", TermTechnicalResearch = new DateTime(2019, 5, 14, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                        new { Id = new Guid("6536244a-d130-49e4-b726-e07117b5c41b"), AcExpiry = new DateTime(2019, 9, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Ford C-MAX", OcExpiry = new DateTime(2019, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), RegistrationNumber = "SLU PO66", TermTechnicalResearch = new DateTime(2019, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                        new { Id = new Guid("bdf51ce4-3402-4f4d-990e-4b08e5495068"), AcExpiry = new DateTime(2019, 9, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), LiftUdtExpiry = new DateTime(2019, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Renault", OcExpiry = new DateTime(2019, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), RegistrationNumber = "SLU TY5X", TachoLegalizationExpiry = new DateTime(2019, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), TermTechnicalResearch = new DateTime(2019, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), VinNumber = "1G1BU51H2HX113345" }
-                    );
+                        new
+                        {
+                            Id = new Guid("c51ba791-541f-47ec-99b8-eec4c854d183"),
+                            Name = "Ford Fusion",
+                            OcExpiry = new DateTime(2019, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegistrationNumber = "SLU 55NL",
+                            TermTechnicalResearch = new DateTime(2019, 5, 14, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("6536244a-d130-49e4-b726-e07117b5c41b"),
+                            AcExpiry = new DateTime(2019, 9, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Ford C-MAX",
+                            OcExpiry = new DateTime(2019, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegistrationNumber = "SLU PO66",
+                            TermTechnicalResearch = new DateTime(2019, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("bdf51ce4-3402-4f4d-990e-4b08e5495068"),
+                            AcExpiry = new DateTime(2019, 9, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LiftUdtExpiry = new DateTime(2019, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Renault",
+                            OcExpiry = new DateTime(2019, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegistrationNumber = "SLU TY5X",
+                            TachoLegalizationExpiry = new DateTime(2019, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TermTechnicalResearch = new DateTime(2019, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VinNumber = "1G1BU51H2HX113345"
+                        });
                 });
 #pragma warning restore 612, 618
         }
