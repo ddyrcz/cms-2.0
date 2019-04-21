@@ -1,0 +1,7 @@
+version: '3'
+services:
+  db:    
+    environment:
+      - SA_PASSWORD=${CMS_EVO_MSSQL_SA_PASSWORD}
+  api:    
+    image: ddyrcz/cms-evo-backend:latest

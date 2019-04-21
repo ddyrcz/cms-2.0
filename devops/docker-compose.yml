@@ -7,5 +7,6 @@ services:
       - MSSQL_PID=Express
     volumes:
       - sqlvolume:/var/opt/mssql
+    container_name: db
 volumes:
   sqlvolume:

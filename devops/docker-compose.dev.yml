@@ -5,4 +5,3 @@ services:
       - SA_PASSWORD=password123!
     ports:
       - 1433:1433
-    container_name: db

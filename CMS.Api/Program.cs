@@ -9,14 +9,26 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Autofac.Extensions.DependencyInjection;
 using Autofac;
+using Microsoft.Extensions.DependencyInjection;
+using CMS.Cars.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace CMS.Api
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            var webHost = CreateWebHostBuilder(args).Build();
+           
+            using (var scope = webHost.Services.CreateScope())
+            {                
+                var myDbContext = scope.ServiceProvider.GetRequiredService<CarsDbContext>();
+               
+                await myDbContext.Database.MigrateAsync();
+            }
+            
+            await webHost.RunAsync();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
