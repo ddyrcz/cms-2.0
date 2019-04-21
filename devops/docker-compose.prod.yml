@@ -7,5 +7,7 @@ services:
     image: ddyrcz/cms-evo-backend:latest
     ports:
       - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=production
     depends_on:
       - db  
