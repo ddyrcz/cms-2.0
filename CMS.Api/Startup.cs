@@ -25,6 +25,9 @@ namespace CMS.Api
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
+
+            var connectionString = _configuration.GetConnectionString("CarsDbConnectionString");
+            Console.WriteLine("Connection string: " + connectionString);
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -55,7 +58,6 @@ namespace CMS.Api
             });
 
             app.UseMvc();
-
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
