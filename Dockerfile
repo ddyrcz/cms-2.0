@@ -5,7 +5,7 @@ COPY . .
 
 RUN dotnet publish -c Release -o /out
 
-FROM microsoft/dotnet:2.1-sdk AS runtime
+FROM microsoft/dotnet:2.2-sdk AS runtime
 
 COPY --from=builder /out /app
 

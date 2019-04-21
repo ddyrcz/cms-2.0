@@ -5,3 +5,7 @@ services:
       - SA_PASSWORD=${CMS_EVO_MSSQL_SA_PASSWORD}
   api:    
     image: ddyrcz/cms-evo-backend:latest
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db  
