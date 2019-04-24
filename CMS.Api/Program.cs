@@ -21,7 +21,7 @@ namespace CMS.Api
         public static async Task Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
-               .WriteTo.Console()
+               .WriteTo.Console(outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {Message:lj}{NewLine}{Exception}")
                .CreateLogger();
 
             var webHost = CreateWebHostBuilder(args).Build();
@@ -39,7 +39,11 @@ namespace CMS.Api
                 {
                     var myDbContext = scope.ServiceProvider.GetRequiredService<CarsDbContext>();
 
+                    Log.Information("Database synchronization started");
+
                     await myDbContext.Database.MigrateAsync();
+
+                    Log.Information("Database synchronization finished");
                 }
             }
             catch (Exception ex)
