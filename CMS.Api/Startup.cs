@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace CMS.Api
@@ -22,12 +23,13 @@ namespace CMS.Api
     {
         private readonly IConfiguration _configuration;
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, ILogger<Startup> logger)
         {
             _configuration = configuration;
 
-            var connectionString = _configuration.GetConnectionString("CarsDbConnectionString");
-            Console.WriteLine("Connection string: " + connectionString);
+            var connectionString = configuration.GetConnectionString("CarsDbConnectionString");
+
+            logger.LogInformation("Using connection string: {ConnectionString}", connectionString);
         }
 
         public void ConfigureServices(IServiceCollection services)
