@@ -8,8 +8,8 @@ namespace CMS.Cars.Domain
             string name, 
             string registrationNumber, 
             string vinNumber,
-            DateTime termTechnicalResearch, 
-            DateTime ocExpiry,
+            DateTime? termTechnicalResearch, 
+            DateTime? ocExpiry,
             DateTime? acExpiry, 
             DateTime? liftUdtExpiry, 
             DateTime? tachoLegalizationExpiry)
@@ -29,8 +29,8 @@ namespace CMS.Cars.Domain
         public string Name { get; private set; }
         public string RegistrationNumber { get; private set; }
         public string VinNumber { get; private set; }
-        public DateTime TermTechnicalResearch { get; private set; }
-        public DateTime OcExpiry { get; private set; }
+        public DateTime? TermTechnicalResearch { get; private set; }
+        public DateTime? OcExpiry { get; private set; }
         public DateTime? AcExpiry { get; private set; }
         public DateTime? LiftUdtExpiry { get; private set; }
         public DateTime? TachoLegalizationExpiry { get; private set; }
@@ -42,8 +42,8 @@ namespace CMS.Cars.Domain
             RegistrationNumber = registrationNumber;
         }        
 
-        public void UpdateDates(DateTime termTechnicalResearch,
-            DateTime ocExpiry,
+        public void UpdateDates(DateTime? termTechnicalResearch,
+            DateTime? ocExpiry,
             DateTime? acExpiry,
             DateTime? liftUdtExpiry,
             DateTime? tachoLegalizationExpiry)

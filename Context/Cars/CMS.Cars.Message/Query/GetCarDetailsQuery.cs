@@ -30,8 +30,8 @@ namespace CMS.Cars.Message.Query
                string name,
                string registrationNumber,
                string vinNumber,
-               DateTime termTechnicalResearch,
-               DateTime ocExpiry,
+               DateTime? termTechnicalResearch,
+               DateTime? ocExpiry,
                DateTime? acExpiry,
                DateTime? liftUdtExpiry,
                DateTime? tachoLegalizationExpiry)
@@ -51,8 +51,8 @@ namespace CMS.Cars.Message.Query
             public string Name { get; }
             public string RegistrationNumber { get; }
             public string VinNumber { get; }
-            public DateTime TermTechnicalResearch { get; }
-            public DateTime OcExpiry { get; }
+            public DateTime? TermTechnicalResearch { get; }
+            public DateTime? OcExpiry { get; }
             public DateTime? AcExpiry { get; }
             public DateTime? LiftUdtExpiry { get; }
             public DateTime? TachoLegalizationExpiry { get; }

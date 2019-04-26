@@ -10,8 +10,8 @@ namespace CMS.Cars.Message.Commands
         public Guid CarId { get; set; }
         public string Name { get; set; }
         public string RegistrationNumber { get; set; }
-        public DateTime TermTechnicalResearch { get; set; }
-        public DateTime OcExpiry { get; set; }
+        public DateTime? TermTechnicalResearch { get; set; }
+        public DateTime? OcExpiry { get; set; }
         public DateTime? AcExpiry { get; set; }
         public DateTime? LiftUdtExpiry { get; set; }
         public DateTime? TachoLegalizationExpiry { get; set; }
