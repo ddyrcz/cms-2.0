@@ -57,5 +57,13 @@ namespace CMS.Api.Controllers
         {
             await _commandBus.Send(request);
         }
+
+        [HttpDelete("{id}")]
+        public async Task Delete(Guid id)
+        {
+            var command = new RemoveCarCommand(id);
+
+            await _commandBus.Send(command);
+        }
     }
 }
