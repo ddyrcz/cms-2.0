@@ -41,6 +41,11 @@ namespace CMS.Cars.Application.Query
                     expirationApproaching));
             }
 
+            result.Cars = result.Cars
+                .OrderBy(x => x.ApproachingExpiration)
+                .ThenBy(x => x.Name)
+                .ToList();
+
             return result;
         }
     }
