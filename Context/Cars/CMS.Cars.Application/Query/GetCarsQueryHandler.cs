@@ -42,7 +42,7 @@ namespace CMS.Cars.Application.Query
             }
 
             result.Cars = result.Cars
-                .OrderBy(x => x.ApproachingExpiration)
+                .OrderByDescending(x => x.ApproachingExpiration)
                 .ThenBy(x => x.Name)
                 .ToList();
 
