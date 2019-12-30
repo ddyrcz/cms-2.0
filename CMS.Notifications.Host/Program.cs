@@ -4,6 +4,7 @@ using Google.Apis.Auth.OAuth2;
 using System;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
+using CMS.Notifications.Host.Jobs;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Logging;
@@ -31,7 +32,7 @@ namespace CMS.Notifications.Host
 
                 await scheduler.Start();
 
-                var job = JobBuilder.Create<HelloJob>()
+                var job = JobBuilder.Create<CheckForExpirationApproachingJob>()
                     .WithIdentity("mainJob")
                     .Build();
 
@@ -45,8 +46,8 @@ namespace CMS.Notifications.Host
                     .WithIdentity("dev")
                     .StartNow()
                     .WithSimpleSchedule(x => x
-                        .WithIntervalInSeconds(20)
-                        .WithRepeatCount(5))
+                        .WithIntervalInSeconds(3)
+                        .WithRepeatCount(0))
                     .Build();
 
                 await scheduler.ScheduleJob(job, devTrigger);
@@ -81,14 +82,6 @@ namespace CMS.Notifications.Host
             {
                 throw new NotImplementedException();
             }
-        }
-    }
-
-    public class HelloJob : IJob
-    {
-        public async Task Execute(IJobExecutionContext context)
-        {
-            await Console.Out.WriteLineAsync("Greetings from HelloJob!");
         }
     }
 }
