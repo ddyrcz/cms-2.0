@@ -2,32 +2,93 @@
 using FirebaseAdmin.Messaging;
 using Google.Apis.Auth.OAuth2;
 using System;
+using System.Collections.Specialized;
+using System.Threading.Tasks;
+using Quartz;
+using Quartz.Impl;
+using Quartz.Logging;
 
 namespace CMS.Notifications.Host
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            FirebaseApp.Create(new AppOptions()
-            {
-                Credential = GoogleCredential.GetApplicationDefault(),
-            });
+            LogProvider.SetCurrentLogProvider(new ConsoleLogProvider());
 
-            var message = new Message()
-            {
-                Notification = new Notification
-                {
-                    Title = "Test title",
-                    Body = "Test title"
-                },
-                Topic = "main"
-            };
+            RunProgramRunExample().GetAwaiter().GetResult();
 
-            string response = FirebaseMessaging.DefaultInstance.SendAsync(message).Result;
-
-            Console.WriteLine("Successfully sent message: " + response);
+            Console.WriteLine("Press any key to close the application");
             Console.ReadKey();
+        }
+
+        private static async Task RunProgramRunExample()
+        {
+            try
+            {
+                var factory = new StdSchedulerFactory();
+                var scheduler = await factory.GetScheduler();
+
+                await scheduler.Start();
+
+                var job = JobBuilder.Create<HelloJob>()
+                    .WithIdentity("mainJob")
+                    .Build();
+
+                var dailyTrigger = TriggerBuilder.Create()
+                    .WithIdentity("daily")
+                    .StartNow()
+                    .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(11, 32))
+                    .Build();
+
+                var devTrigger = TriggerBuilder.Create()
+                    .WithIdentity("dev")
+                    .StartNow()
+                    .WithSimpleSchedule(x => x
+                        .WithIntervalInSeconds(20)
+                        .WithRepeatCount(5))
+                    .Build();
+
+                await scheduler.ScheduleJob(job, devTrigger);
+            }
+            catch (SchedulerException se)
+            {
+                Console.WriteLine(se);
+            }
+        }
+
+        // simple log provider to get something to the console
+        private class ConsoleLogProvider : ILogProvider
+        {
+            public Logger GetLogger(string name)
+            {
+                return (level, func, exception, parameters) =>
+                {
+                    if (level >= LogLevel.Info && func != null)
+                    {
+                        Console.WriteLine("[" + DateTime.Now.ToLongTimeString() + "] [" + level + "] " + func(), parameters);
+                    }
+                    return true;
+                };
+            }
+
+            public IDisposable OpenNestedContext(string message)
+            {
+                throw new NotImplementedException();
+            }
+
+            public IDisposable OpenMappedContext(string key, string value)
+            {
+                throw new NotImplementedException();
+            }
+        }
+    }
+
+    public class HelloJob : IJob
+    {
+        public async Task Execute(IJobExecutionContext context)
+        {
+            await Console.Out.WriteLineAsync("Greetings from HelloJob!");
         }
     }
 }
