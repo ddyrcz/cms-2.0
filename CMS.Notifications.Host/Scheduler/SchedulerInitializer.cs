@@ -33,9 +33,7 @@ namespace CMS.Notifications.Host.Scheduler
                 var devTrigger = TriggerBuilder.Create()
                     .WithIdentity("dev")
                     .StartNow()
-                    .WithSimpleSchedule(x => x
-                        .WithIntervalInSeconds(3)
-                        .WithRepeatCount(5))
+                    .WithSimpleSchedule()
                     .Build();
 
                 await scheduler.ScheduleJob(job, devTrigger);

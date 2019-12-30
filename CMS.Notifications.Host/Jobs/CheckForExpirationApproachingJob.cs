@@ -53,8 +53,8 @@ namespace CMS.Notifications.Host.Jobs
             {
                 Notification = new Notification
                 {
-                    Body = "Deadline is incoming",
-                    Title = "Check the app!"
+                    Title = "Powiadomienie",
+                    Body = "Zbliża się koniec terminu ważności"
                 },
                 Topic = "main"
             };
