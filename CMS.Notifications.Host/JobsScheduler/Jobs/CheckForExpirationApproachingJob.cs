@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using Dapper;
-using FirebaseAdmin;
 using FirebaseAdmin.Messaging;
-using Google.Apis.Auth.OAuth2;
 using Newtonsoft.Json;
 using Quartz;
 
-namespace CMS.Notifications.Host.Jobs
+namespace CMS.Notifications.Host.JobsScheduler.Jobs
 {
     class CheckForExpirationApproachingJob : IJob
     {

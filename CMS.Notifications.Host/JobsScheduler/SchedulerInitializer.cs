@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using CMS.Notifications.Host.Jobs;
+using CMS.Notifications.Host.JobsScheduler.Jobs;
 using Microsoft.Extensions.Configuration;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Logging;
 
-namespace CMS.Notifications.Host.Scheduler
+namespace CMS.Notifications.Host.JobsScheduler
 {
     static class SchedulerInitializer
     {
@@ -28,12 +28,6 @@ namespace CMS.Notifications.Host.Scheduler
                     .WithIdentity("mainJob")
                     .UsingJobData("connectionString", connectionString)
                     .UsingJobData("notifyAboutExpirationDaysBefore", notifyAboutExpirationDaysBefore)
-                    .Build();
-
-                var dailyTrigger = TriggerBuilder.Create()
-                    .WithIdentity("daily")
-                    .StartNow()
-                    .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(11, 32))
                     .Build();
 
                 var devTrigger = TriggerBuilder.Create()

@@ -1,7 +1,7 @@
 ﻿using System;
 using Quartz.Logging;
 
-namespace CMS.Notifications.Host.Scheduler
+namespace CMS.Notifications.Host.JobsScheduler
 {
     public class ConsoleLogProvider : ILogProvider
     {
