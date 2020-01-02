@@ -18,21 +18,18 @@ namespace CMS.Notifications.Host.Jobs
     {
         public async Task Execute(IJobExecutionContext context)
         {
+            var connectionString = context.JobDetail.JobDataMap.GetString("connectionString");
+            var notifyAboutExpirationDaysBefore = context.JobDetail.JobDataMap.GetIntValue("NotifyAboutExpirationDaysBefore");
+
             try
             {
-                // TODO: Move to appsettings.json
-                using (var connection = new SqlConnection("Server=localhost;Database=CMS;User Id=sa; Password=password123!;"))
+                using (var connection = new SqlConnection(connectionString))
                 {
                     await connection.OpenAsync();
-                    var query = @"SELECT * from CARS";
+                    var getCarsQuery = @"SELECT * from CARS";
 
-                    var cars = await connection.QueryAsync<Car>(query);
-
-                    // TODO: Move to appsettings.json
-                    int approachingExpirationDaysBefore = 14;
-
-                    var carsWithExpirationApproaching =
-                        cars.Where(car => car.IsExpirationApproaching(approachingExpirationDaysBefore));
+                    var cars = await connection.QueryAsync<Car>(getCarsQuery);
+                    var carsWithExpirationApproaching = cars.Where(car => car.IsExpirationApproaching(notifyAboutExpirationDaysBefore));
 
                     if (carsWithExpirationApproaching.Any())
                     {
@@ -44,7 +41,6 @@ namespace CMS.Notifications.Host.Jobs
             {
                 Console.WriteLine(ex.Message);
             }
-            
         }
 
         private async Task SendNotificationToFirebase()
@@ -60,8 +56,8 @@ namespace CMS.Notifications.Host.Jobs
             };
 
             var messageInJsonFormat  = JsonConvert.SerializeObject(message, Formatting.Indented);
-
             var messageId = await FirebaseMessaging.DefaultInstance.SendAsync(message);
+
             Console.WriteLine($"Successfully sent message '{messageId}' with payload: {Environment.NewLine}{messageInJsonFormat}");
         }
     }

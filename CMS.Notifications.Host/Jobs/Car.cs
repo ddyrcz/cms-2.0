@@ -16,14 +16,14 @@ namespace CMS.Notifications.Host.Jobs
         public DateTime? LiftUdtExpiry { get; set; }
         public DateTime? TachoLegalizationExpiry { get; set; }
 
-        public bool IsExpirationApproaching(int approachingExpirationDaysBefore)
+        public bool IsExpirationApproaching(int notifyAboutExpirationDaysBefore)
         {
             return
-                (TermTechnicalResearch?.Date - DateTime.Now.Date)?.Days <= approachingExpirationDaysBefore ||
-                (OcExpiry?.Date - DateTime.Now.Date)?.Days <= approachingExpirationDaysBefore ||
-                (AcExpiry?.Date - DateTime.Now.Date)?.Days <= approachingExpirationDaysBefore ||
-                (LiftUdtExpiry?.Date - DateTime.Now.Date)?.Days <= approachingExpirationDaysBefore ||
-                (TachoLegalizationExpiry?.Date - DateTime.Now.Date)?.Days <= approachingExpirationDaysBefore;
+                (TermTechnicalResearch?.Date - DateTime.Now.Date)?.Days <= notifyAboutExpirationDaysBefore ||
+                (OcExpiry?.Date - DateTime.Now.Date)?.Days <= notifyAboutExpirationDaysBefore ||
+                (AcExpiry?.Date - DateTime.Now.Date)?.Days <= notifyAboutExpirationDaysBefore ||
+                (LiftUdtExpiry?.Date - DateTime.Now.Date)?.Days <= notifyAboutExpirationDaysBefore ||
+                (TachoLegalizationExpiry?.Date - DateTime.Now.Date)?.Days <= notifyAboutExpirationDaysBefore;
         }
     }
 }

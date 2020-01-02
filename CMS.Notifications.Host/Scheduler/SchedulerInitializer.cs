@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using CMS.Notifications.Host.Jobs;
+using Microsoft.Extensions.Configuration;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Logging;
@@ -9,9 +10,12 @@ namespace CMS.Notifications.Host.Scheduler
 {
     static class SchedulerInitializer
     {
-        public static async Task Initialize()
+        public static async Task Initialize(IConfiguration configuration)
         {
             LogProvider.SetCurrentLogProvider(new ConsoleLogProvider());
+
+            var connectionString = configuration.GetConnectionString("CarsDbConnectionString");
+            var notifyAboutExpirationDaysBefore = configuration.GetConnectionString("NotifyAboutExpirationDaysBefore");
 
             try
             {
@@ -22,6 +26,8 @@ namespace CMS.Notifications.Host.Scheduler
 
                 var job = JobBuilder.Create<CheckForExpirationApproachingJob>()
                     .WithIdentity("mainJob")
+                    .UsingJobData("connectionString", connectionString)
+                    .UsingJobData("notifyAboutExpirationDaysBefore", notifyAboutExpirationDaysBefore)
                     .Build();
 
                 var dailyTrigger = TriggerBuilder.Create()
