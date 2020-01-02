@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMS.Cars.Autofac", "Context
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notifications", "Notifications", "{2287336D-09A4-4A98-866F-AF4853544FF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.Notifications.Host", "CMS.Notifications.Host\CMS.Notifications.Host.csproj", "{AFC2CE57-F87F-4440-ACDE-3F637A9738EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.Notifications.Host", "Context\Notifications\CMS.Notifications.Host\CMS.Notifications.Host.csproj", "{AFC2CE57-F87F-4440-ACDE-3F637A9738EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
