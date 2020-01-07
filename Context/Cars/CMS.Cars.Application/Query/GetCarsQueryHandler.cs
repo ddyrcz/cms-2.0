@@ -26,8 +26,7 @@ namespace CMS.Cars.Application.Query
 
         public async Task<IQueryResult> Handle(GetCarsQuery query)
         {
-            var cars = await _dbContext.Cars
-                .ToListAsync();
+            var cars = await _dbContext.Cars.ToListAsync();
 
             var result = new GetCarsQueryResult();
 
