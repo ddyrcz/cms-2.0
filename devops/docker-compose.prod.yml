@@ -4,7 +4,7 @@ services:
     environment:
       - SA_PASSWORD=${CMS_EVO_MSSQL_SA_PASSWORD}
   api:    
-    image: ddyrcz/cms-evo-backend:latest
+    image: ddyrcz/cms-evo:api-latest
     ports:
       - "5000:80"
     environment:
@@ -12,5 +12,5 @@ services:
     depends_on:
       - db  
     container_name: api
-    volumes:
-      - "./appsettings.Production.json:/app/appsettings.Production.json"
+    environment:
+      - ConnectionStrings__CarsDbConnectionString=Server=db;Database=CMS;User Id=sa; Password=${CMS_EVO_MSSQL_SA_PASSWORD};
