@@ -5,3 +5,4 @@ services:
     container_name: notifications
     environment:
       - ConnectionStrings__CarsDbConnectionString=Server=db;Database=CMS;User Id=sa; Password=${CMS_EVO_MSSQL_SA_PASSWORD};
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/cms-evo-firebase-adminsdk.json
