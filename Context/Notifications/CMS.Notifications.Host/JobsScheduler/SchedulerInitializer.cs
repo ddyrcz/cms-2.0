@@ -24,19 +24,28 @@ namespace CMS.Notifications.Host.JobsScheduler
 
                 await scheduler.Start();
 
-                var job = JobBuilder.Create<CheckForExpirationApproachingJob>()
+                var checkForExpirationApproachingJob = JobBuilder.Create<CheckForExpirationApproachingJob>()
                     .WithIdentity("mainJob")
                     .UsingJobData("connectionString", connectionString)
                     .UsingJobData("notifyAboutExpirationDaysBefore", notifyAboutExpirationDaysBefore)
                     .Build();
 
-                var devTrigger = TriggerBuilder.Create()
-                    .WithIdentity("dev")
-                    .StartNow()
-                    .WithSimpleSchedule()
-                    .Build();
+                var triggers = new[] {
+                    TriggerBuilder.Create()
+                        .StartNow()
+                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(05, 00))
+                        .Build(),
+                    TriggerBuilder.Create()
+                        .StartNow()
+                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(17, 00))
+                        .Build(),
+                    TriggerBuilder.Create()
+                        .StartNow()
+                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(20, 00))
+                        .Build()
+                };
 
-                await scheduler.ScheduleJob(job, devTrigger);
+                await scheduler.ScheduleJob(checkForExpirationApproachingJob, triggers, false);
             }
             catch (SchedulerException se)
             {
