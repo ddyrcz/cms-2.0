@@ -30,18 +30,28 @@ namespace CMS.Notifications.Host.JobsScheduler
                     .UsingJobData("notifyAboutExpirationDaysBefore", notifyAboutExpirationDaysBefore)
                     .Build();
 
+                var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Central European Standard Time");
+
                 var triggers = new[] {
                     TriggerBuilder.Create()
                         .StartNow()
-                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(05, 00))
+                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(05, 00).InTimeZone(timeZone))
                         .Build(),
                     TriggerBuilder.Create()
                         .StartNow()
-                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(17, 00))
+                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(17, 00).InTimeZone(timeZone))
                         .Build(),
                     TriggerBuilder.Create()
                         .StartNow()
-                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(20, 00))
+                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(20, 00).InTimeZone(timeZone))
+                        .Build(),
+                    TriggerBuilder.Create()
+                        .StartNow()
+                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(20, 50).InTimeZone(timeZone))
+                        .Build(),
+                    TriggerBuilder.Create()
+                        .StartNow()
+                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(21, 00).InTimeZone(timeZone))
                         .Build()
                 };
 
