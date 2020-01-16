@@ -4,6 +4,7 @@ using Google.Apis.Auth.OAuth2;
 using System;
 using System.Collections.Specialized;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using CMS.Notifications.Host.JobsScheduler;
 using Microsoft.Extensions.Configuration;
@@ -13,14 +14,16 @@ using Quartz.Logging;
 
 namespace CMS.Notifications.Host
 {
-    public partial class Program
+    public class Prorgam
     {
-        private static void Main(string[] args)
+        private static readonly AutoResetEvent _closing = new AutoResetEvent(false);
+
+        public static void Main(string[] args)
         {
             RunAsync().GetAwaiter().GetResult();
 
-            Console.WriteLine("Press any key to close the application");
-            Console.ReadKey();
+            Console.CancelKeyPress += OnExit;
+            _closing.WaitOne();
         }
 
         private static async Task RunAsync()
@@ -32,6 +35,12 @@ namespace CMS.Notifications.Host
 
             FirebaseApp.Create();
             await SchedulerInitializer.Initialize(configuration);
+        }
+
+        protected static void OnExit(object sender, ConsoleCancelEventArgs args)
+        {
+            Console.WriteLine("Exiting application...");
+            _closing.Set();
         }
     }
 }
