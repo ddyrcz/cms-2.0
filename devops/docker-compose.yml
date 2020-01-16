@@ -5,6 +5,7 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - MSSQL_PID=Express
+      - SA_PASSWORD=password123!
     volumes:
       - sqlvolume:/var/opt/mssql
     container_name: db

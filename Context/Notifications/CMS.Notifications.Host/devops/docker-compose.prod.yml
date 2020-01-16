@@ -1,0 +1,5 @@
+version: '3'
+services:
+  notifications:
+    environment:
+      - ConnectionStrings__CarsDbConnectionString=Server=db;Database=CMS;User Id=sa; Password=${CMS_EVO_MSSQL_SA_PASSWORD};
