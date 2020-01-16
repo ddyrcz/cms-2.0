@@ -30,7 +30,8 @@ namespace CMS.Notifications.Host
         {
             var configurationBuilder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables();
             var configuration = configurationBuilder.Build();
 
             FirebaseApp.Create();
