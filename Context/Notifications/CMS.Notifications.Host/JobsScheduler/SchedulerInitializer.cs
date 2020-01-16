@@ -30,7 +30,7 @@ namespace CMS.Notifications.Host.JobsScheduler
                     .UsingJobData("notifyAboutExpirationDaysBefore", notifyAboutExpirationDaysBefore)
                     .Build();
 
-                var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Central European Standard Time");
+                var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Europe/Warsaw");
 
                 var triggers = new[] {
                     TriggerBuilder.Create()
