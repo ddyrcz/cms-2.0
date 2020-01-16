@@ -39,20 +39,16 @@ namespace CMS.Notifications.Host.JobsScheduler
                         .Build(),
                     TriggerBuilder.Create()
                         .StartNow()
+                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(10, 30).InTimeZone(timeZone))
+                        .Build(),
+                    TriggerBuilder.Create()
+                        .StartNow()
                         .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(17, 00).InTimeZone(timeZone))
                         .Build(),
                     TriggerBuilder.Create()
                         .StartNow()
                         .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(20, 00).InTimeZone(timeZone))
                         .Build(),
-                    TriggerBuilder.Create()
-                        .StartNow()
-                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(20, 50).InTimeZone(timeZone))
-                        .Build(),
-                    TriggerBuilder.Create()
-                        .StartNow()
-                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(21, 00).InTimeZone(timeZone))
-                        .Build()
                 };
 
                 await scheduler.ScheduleJob(checkForExpirationApproachingJob, triggers, false);
