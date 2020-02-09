@@ -35,15 +35,7 @@ namespace CMS.Notifications.Host.JobsScheduler
                 var triggers = new[] {
                     TriggerBuilder.Create()
                         .StartNow()
-                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(05, 00).InTimeZone(timeZone))
-                        .Build(),
-                    TriggerBuilder.Create()
-                        .StartNow()
-                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(10, 30).InTimeZone(timeZone))
-                        .Build(),
-                    TriggerBuilder.Create()
-                        .StartNow()
-                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(17, 00).InTimeZone(timeZone))
+                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(12, 00).InTimeZone(timeZone))
                         .Build(),
                     TriggerBuilder.Create()
                         .StartNow()

@@ -8,6 +8,8 @@ services:
       - SA_PASSWORD=password123!
     volumes:
       - sqlvolume:/var/opt/mssql
+    ports:
+      - 1433:1433
     container_name: db
 volumes:
   sqlvolume:
