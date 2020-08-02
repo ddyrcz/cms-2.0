@@ -25,7 +25,7 @@ namespace CMS.Cars.Application
 
             var configuration = new Configuration()
             {
-                ApproachingExpirationDaysBefore = Configuration.GetValue<int>("ApproachingExpirationDaysBefore")
+                NotificationDaysBefore = Configuration.GetValue<int>("NotificationDaysBefore")
             };
 
             builder.RegisterInstance(configuration).AsSelf();

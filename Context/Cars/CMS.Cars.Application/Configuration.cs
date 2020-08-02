@@ -6,6 +6,6 @@ namespace CMS.Cars.Application
 {
     public class Configuration
     {
-        public int ApproachingExpirationDaysBefore { get; set; }
+        public int NotificationDaysBefore { get; set; }
     }
 }

@@ -27,6 +27,7 @@ namespace CMS.Cars.Application.Command
             
             car.UpdateDates(command.TermTechnicalResearch,
                 command.OcExpiry,
+                command.OcInstallmentDate,
                 command.AcExpiry,
                 command.LiftUdtExpiry,
                 command.TachoLegalizationExpiry);

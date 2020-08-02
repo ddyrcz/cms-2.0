@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 
 namespace CMS.Cars.Domain
 {
@@ -10,6 +11,7 @@ namespace CMS.Cars.Domain
             string vinNumber,
             DateTime? termTechnicalResearch, 
             DateTime? ocExpiry,
+            DateTime? ocInstallmentDate,
             DateTime? acExpiry, 
             DateTime? liftUdtExpiry, 
             DateTime? tachoLegalizationExpiry)
@@ -20,6 +22,7 @@ namespace CMS.Cars.Domain
             VinNumber = vinNumber;
             TermTechnicalResearch = termTechnicalResearch;
             OcExpiry = ocExpiry;
+            OcInstallmentDate = ocInstallmentDate;
             AcExpiry = acExpiry;
             LiftUdtExpiry = liftUdtExpiry;
             TachoLegalizationExpiry = tachoLegalizationExpiry;
@@ -31,6 +34,7 @@ namespace CMS.Cars.Domain
         public string VinNumber { get; private set; }
         public DateTime? TermTechnicalResearch { get; private set; }
         public DateTime? OcExpiry { get; private set; }
+        public DateTime? OcInstallmentDate { get; private set; }
         public DateTime? AcExpiry { get; private set; }
         public DateTime? LiftUdtExpiry { get; private set; }
         public DateTime? TachoLegalizationExpiry { get; private set; }
@@ -44,12 +48,14 @@ namespace CMS.Cars.Domain
 
         public void UpdateDates(DateTime? termTechnicalResearch,
             DateTime? ocExpiry,
+            DateTime? ocInstallmentDate,
             DateTime? acExpiry,
             DateTime? liftUdtExpiry,
             DateTime? tachoLegalizationExpiry)
         {
             TermTechnicalResearch = termTechnicalResearch;
             OcExpiry = ocExpiry;
+            OcInstallmentDate = ocInstallmentDate;
             AcExpiry = acExpiry;
             LiftUdtExpiry = liftUdtExpiry;
             TachoLegalizationExpiry = tachoLegalizationExpiry;

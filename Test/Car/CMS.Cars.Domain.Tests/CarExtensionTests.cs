@@ -10,7 +10,7 @@ namespace CMS.Cars.Domain.Tests
         [Test]
         public void IsExpirationApproaching_Should_Return_False_Case_01()
         {
-            var car = new Car(Guid.NewGuid(), null, null, null, DateTime.Now.AddMonths(6), DateTime.Now.AddMonths(6), null, null, null);
+            var car = new Car(Guid.NewGuid(), null, null, null, DateTime.Now.AddMonths(6), DateTime.Now.AddMonths(6), null, null, null, null);
 
             var result = car.IsExpirationApproaching(14);
 
@@ -20,7 +20,7 @@ namespace CMS.Cars.Domain.Tests
         [Test]
         public void IsExpirationApproaching_Should_Return_False_Case_02()
         {
-            var car = new Car(Guid.NewGuid(), null, null, null, DateTime.Now.AddMonths(6), DateTime.Now.AddMonths(6), DateTime.Now.AddMonths(6), DateTime.Now.AddMonths(6), DateTime.Now.AddMonths(6));
+            var car = new Car(Guid.NewGuid(), null, null, null, DateTime.Now.AddMonths(6), DateTime.Now.AddMonths(6), null, DateTime.Now.AddMonths(6), DateTime.Now.AddMonths(6), DateTime.Now.AddMonths(6));
 
             var result = car.IsExpirationApproaching(14);
 
@@ -30,7 +30,7 @@ namespace CMS.Cars.Domain.Tests
         [Test]
         public void IsExpirationApproaching_Should_Return_False_Case_03()
         {
-            var car = new Car(Guid.NewGuid(), null, null, null, DateTime.Now.AddDays(15), DateTime.Now.AddMonths(6), DateTime.Now.AddMonths(6), DateTime.Now.AddMonths(6), DateTime.Now.AddMonths(6));
+            var car = new Car(Guid.NewGuid(), null, null, null, DateTime.Now.AddDays(15), DateTime.Now.AddMonths(6), null, DateTime.Now.AddMonths(6), DateTime.Now.AddMonths(6), DateTime.Now.AddMonths(6));
 
             var result = car.IsExpirationApproaching(14);
 
@@ -40,7 +40,7 @@ namespace CMS.Cars.Domain.Tests
         [Test]
         public void IsExpirationApproaching_Should_Return_True_Case_01()
         {
-            var car = new Car(Guid.NewGuid(), null, null, null, DateTime.Now.AddDays(-15), DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now);
+            var car = new Car(Guid.NewGuid(), null, null, null, DateTime.Now.AddDays(-15), DateTime.Now, null, DateTime.Now, DateTime.Now, DateTime.Now);
 
             var result = car.IsExpirationApproaching(14);
 
@@ -56,6 +56,7 @@ namespace CMS.Cars.Domain.Tests
                 null, 
                 DateTime.Now.AddDays(14).Date.AddHours(23).AddMinutes(59),
                 DateTime.Now.AddMonths(6),
+                null,
                 DateTime.Now.AddMonths(6),
                 DateTime.Now.AddMonths(6),
                 DateTime.Now.AddMonths(6));

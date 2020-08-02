@@ -14,7 +14,7 @@ namespace CMS.Notifications.Host.JobsScheduler.Jobs
         public async Task Execute(IJobExecutionContext context)
         {
             var connectionString = context.JobDetail.JobDataMap.GetString("connectionString");
-            var notifyAboutExpirationDaysBefore = context.JobDetail.JobDataMap.GetIntValue("NotifyAboutExpirationDaysBefore");
+            var notificationDaysBefore = context.JobDetail.JobDataMap.GetIntValue("NotificationDaysBefore");
 
             try
             {
@@ -24,7 +24,7 @@ namespace CMS.Notifications.Host.JobsScheduler.Jobs
                     var getCarsQuery = @"SELECT * from CARS";
 
                     var cars = await connection.QueryAsync<Car>(getCarsQuery);
-                    var carsWithExpirationApproaching = cars.Where(car => car.IsExpirationApproaching(notifyAboutExpirationDaysBefore));
+                    var carsWithExpirationApproaching = cars.Where(car => car.IsExpirationApproaching(notificationDaysBefore));
 
                     if (carsWithExpirationApproaching.Any())
                     {

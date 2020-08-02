@@ -25,18 +25,18 @@ namespace CMS.Cars.Message.Query
             public Car(Guid id,
                 string name,
                 string registrationNumber,
-                bool approachingExpiration)
+                bool isReviewRequired)
             {
                 Id = id;
                 Name = name;
                 RegistrationNumber = registrationNumber;
-                ApproachingExpiration = approachingExpiration;
+                IsReviewRequired = isReviewRequired;
             }
 
             public Guid Id { get; }
             public string Name { get;}
             public string RegistrationNumber { get; }
-            public bool ApproachingExpiration { get;  }
+            public bool IsReviewRequired { get;  }
         }
     }
 }
