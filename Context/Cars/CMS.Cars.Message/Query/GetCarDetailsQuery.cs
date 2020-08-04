@@ -32,6 +32,7 @@ namespace CMS.Cars.Message.Query
                string vinNumber,
                DateTime? termTechnicalResearch,
                DateTime? ocExpiry,
+               DateTime? ocInstallmentDate,
                DateTime? acExpiry,
                DateTime? liftUdtExpiry,
                DateTime? tachoLegalizationExpiry)
@@ -42,6 +43,7 @@ namespace CMS.Cars.Message.Query
                 VinNumber = vinNumber;
                 TermTechnicalResearch = termTechnicalResearch;
                 OcExpiry = ocExpiry;
+                OcInstallmentDate = ocInstallmentDate;
                 AcExpiry = acExpiry;
                 LiftUdtExpiry = liftUdtExpiry;
                 TachoLegalizationExpiry = tachoLegalizationExpiry;
@@ -53,6 +55,7 @@ namespace CMS.Cars.Message.Query
             public string VinNumber { get; }
             public DateTime? TermTechnicalResearch { get; }
             public DateTime? OcExpiry { get; }
+            public DateTime? OcInstallmentDate { get; }
             public DateTime? AcExpiry { get; }
             public DateTime? LiftUdtExpiry { get; }
             public DateTime? TachoLegalizationExpiry { get; }

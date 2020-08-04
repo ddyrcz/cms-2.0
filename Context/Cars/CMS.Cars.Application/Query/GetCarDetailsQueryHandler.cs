@@ -30,6 +30,7 @@ namespace CMS.Cars.Application.Query
                 car.VinNumber,
                 car.TermTechnicalResearch,
                 car.OcExpiry,
+                car.OcInstallmentDate,
                 car.AcExpiry,
                 car.LiftUdtExpiry,
                 car.TachoLegalizationExpiry));
