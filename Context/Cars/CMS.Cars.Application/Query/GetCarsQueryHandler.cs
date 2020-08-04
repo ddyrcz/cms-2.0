@@ -32,16 +32,18 @@ namespace CMS.Cars.Application.Query
 
             foreach (var car in cars)
             {
-                bool expirationApproaching = car.IsExpirationApproaching(_configuration.ApproachingExpirationDaysBefore);
+                bool isReviewRequired = 
+                    car.IsExpirationApproaching(_configuration.NotificationDaysBefore) ||
+                    car.IsInstallmentApproaching(_configuration.NotificationDaysBefore);
 
                 result.Cars.Add(new GetCarsQueryResult.Car(car.Id,
                     car.Name,
                     car.RegistrationNumber,
-                    expirationApproaching));
+                    isReviewRequired));
             }
 
             result.Cars = result.Cars
-                .OrderByDescending(x => x.ApproachingExpiration)
+                .OrderByDescending(x => x.IsReviewRequired)
                 .ThenBy(x => x.Name)
                 .ToList();
 

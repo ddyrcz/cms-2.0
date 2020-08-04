@@ -39,11 +39,11 @@ namespace CMS.Api
                 {
                     var myDbContext = scope.ServiceProvider.GetRequiredService<CarsDbContext>();
 
-                    Log.Information("Database synchronization started");
+                    Log.Information("Database synchronization started.");
 
                     await myDbContext.Database.MigrateAsync();
 
-                    Log.Information("Database synchronization finished");
+                    Log.Information("Database synchronization finished.");
                 }
             }
             catch (Exception ex)

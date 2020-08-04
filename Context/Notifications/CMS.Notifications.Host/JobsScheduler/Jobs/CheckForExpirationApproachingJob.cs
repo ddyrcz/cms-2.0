@@ -14,7 +14,7 @@ namespace CMS.Notifications.Host.JobsScheduler.Jobs
         public async Task Execute(IJobExecutionContext context)
         {
             var connectionString = context.JobDetail.JobDataMap.GetString("connectionString");
-            var notifyAboutExpirationDaysBefore = context.JobDetail.JobDataMap.GetIntValue("NotifyAboutExpirationDaysBefore");
+            var notificationDaysBefore = context.JobDetail.JobDataMap.GetIntValue("NotificationDaysBefore");
 
             try
             {
@@ -24,11 +24,14 @@ namespace CMS.Notifications.Host.JobsScheduler.Jobs
                     var getCarsQuery = @"SELECT * from CARS";
 
                     var cars = await connection.QueryAsync<Car>(getCarsQuery);
-                    var carsWithExpirationApproaching = cars.Where(car => car.IsExpirationApproaching(notifyAboutExpirationDaysBefore));
 
-                    if (carsWithExpirationApproaching.Any())
+                    var carsToReview = cars.Where(car => 
+                        car.IsExpirationApproaching(notificationDaysBefore) ||
+                        car.IsInstallmentApproaching(notificationDaysBefore));
+
+                    if (carsToReview.Any())
                     {
-                        await SendNotificationToFirebase();
+                        await SendNotification();
                     }
                 }
             }
@@ -38,19 +41,19 @@ namespace CMS.Notifications.Host.JobsScheduler.Jobs
             }
         }
 
-        private async Task SendNotificationToFirebase()
+        private async Task SendNotification()
         {
             var message = new Message()
             {
                 Notification = new Notification
                 {
                     Title = "Powiadomienie",
-                    Body = "Zbliża się koniec terminu ważności"
+                    Body = "Zbliża się koniec terminu."
                 },
                 Topic = "main"
             };
 
-            var messageInJsonFormat  = JsonConvert.SerializeObject(message, Formatting.Indented);
+            var messageInJsonFormat = JsonConvert.SerializeObject(message, Formatting.Indented);
             var messageId = await FirebaseMessaging.DefaultInstance.SendAsync(message);
 
             Console.WriteLine($"Successfully sent message '{messageId}' with payload: {Environment.NewLine}{messageInJsonFormat}");

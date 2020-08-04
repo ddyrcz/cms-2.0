@@ -15,5 +15,10 @@ namespace CMS.Cars.Domain
                 (car.LiftUdtExpiry?.Date - DateTime.Now.Date)?.Days <= approachingExpirationDaysBefore ||
                 (car.TachoLegalizationExpiry?.Date - DateTime.Now.Date)?.Days <= approachingExpirationDaysBefore;
         }
+
+        public static bool IsInstallmentApproaching(this Car car, int approachingDaysBefore)
+        {
+            return (car.OcInstallmentDate?.Date - DateTime.Now.Date)?.Days <= approachingDaysBefore;
+        }
     }
 }

@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 Context/Notifications/CMS.Notifications.Host/cms-evo-firebase-adminsdk.json
+/cms-evo-firebase-adminsdk.json

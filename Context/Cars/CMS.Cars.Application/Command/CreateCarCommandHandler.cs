@@ -26,6 +26,7 @@ namespace CMS.Cars.Application.Command
                 command.VinNumber,
                 command.TermTechnicalResearch,
                 command.OcExpiry,
+                command.OcInstallmentDate,
                 command.AcExpiry,
                 command.LiftUdtExpiry,
                 command.TachoLegalizationExpiry);
