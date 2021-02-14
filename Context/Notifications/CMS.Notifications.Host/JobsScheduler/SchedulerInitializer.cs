@@ -47,9 +47,6 @@ namespace CMS.Notifications.Host.JobsScheduler
                         .Build(),
                 };
 
-
-
-
                 await scheduler.ScheduleJob(checkForExpirationApproachingJob, triggers, false);
             }
             catch (SchedulerException se)
