@@ -1,47 +1,45 @@
-﻿using FirebaseAdmin;
-using FirebaseAdmin.Messaging;
-using Google.Apis.Auth.OAuth2;
-using System;
-using System.Collections.Specialized;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-using CMS.Notifications.Host.JobsScheduler;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Quartz;
-using Quartz.Impl;
-using Quartz.Logging;
+using TimeZoneConverter;
+using Microsoft.Extensions.Hosting;
+using CMS.Notifications.Host.Jobs;
+using System;
+using FirebaseAdmin;
 
 namespace CMS.Notifications.Host
 {
     public class Prorgam
     {
-        private static readonly AutoResetEvent _closing = new AutoResetEvent(false);
-
         public static void Main(string[] args)
         {
-            RunAsync().GetAwaiter().GetResult();
-
-            Console.CancelKeyPress += OnExit;
-            _closing.WaitOne();
-        }
-
-        private static async Task RunAsync()
-        {
-            var configurationBuilder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddEnvironmentVariables();
-            var configuration = configurationBuilder.Build();
-
             FirebaseApp.Create();
-            await SchedulerInitializer.Initialize(configuration);
+            CreateHostBuilder(args).Build().Run();
         }
 
-        protected static void OnExit(object sender, ConsoleCancelEventArgs args)
-        {
-            Console.WriteLine("Exiting application...");
-            _closing.Set();
-        }
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+           Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args)
+           .ConfigureServices((hostContext, services) =>
+           {
+               services.AddLogging(configure => configure.AddConsole(opt =>
+                {
+                    opt.TimestampFormat = "yyyy-MM-dd HH:mm:ss ";
+                }))
+               .AddQuartz(q =>
+               {
+                   q.UseMicrosoftDependencyInjectionJobFactory();
+                   q.ScheduleJob<CheckForExpirationApproachingJob>(trigger =>
+                   {
+                       var timeZone = TZConvert.GetTimeZoneInfo("Europe/Warsaw");
+
+                       trigger.WithCronSchedule(CronScheduleBuilder.DailyAtHourAndMinute(09, 00).InTimeZone(timeZone));
+                       trigger.WithCronSchedule(CronScheduleBuilder.DailyAtHourAndMinute(20, 00).InTimeZone(timeZone));
+                   });
+               })
+               .AddQuartzHostedService(options =>
+               {
+                    options.WaitForJobsToComplete = true;
+               });
+           });
     }
 }
