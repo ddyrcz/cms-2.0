@@ -34,7 +34,7 @@ namespace CMS.Notifications.Host.Jobs
             using (var connection = new SqlConnection(connectionString))
             {
                 await connection.OpenAsync();
-                var getCarsQuery = @"SELECT * from CARS";
+                var getCarsQuery = @"SELECT * FROM CARS";
 
                 var cars = await connection.QueryAsync<Car>(getCarsQuery);
 
