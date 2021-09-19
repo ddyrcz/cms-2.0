@@ -14,7 +14,7 @@ namespace CMS.Notifications.Host.JobsScheduler.Jobs
         public async Task Execute(IJobExecutionContext context)
         {
             var connectionString = context.JobDetail.JobDataMap.GetString("connectionString");
-            var notificationDaysBefore = context.JobDetail.JobDataMap.GetIntValue("NotificationDaysBefore");
+            var notificationDaysBefore = context.JobDetail.JobDataMap.GetIntValue("notificationDaysBefore");
 
             try
             {
@@ -25,13 +25,13 @@ namespace CMS.Notifications.Host.JobsScheduler.Jobs
 
                     var cars = await connection.QueryAsync<Car>(getCarsQuery);
 
-                    var carsToReview = cars.Where(car => 
+                    var carsToReview = cars.Where(car =>
                         car.IsExpirationApproaching(notificationDaysBefore) ||
-                        car.IsInstallmentApproaching(notificationDaysBefore));
+                        car.IsInstallmentApproaching(notificationDaysBefore)).ToArray();
 
-                    if (carsToReview.Any())
+                    if (carsToReview.Length > 0)
                     {
-                        await SendNotification();
+                        await SendNotification(carsToReview);
                     }
                 }
             }
@@ -41,14 +41,14 @@ namespace CMS.Notifications.Host.JobsScheduler.Jobs
             }
         }
 
-        private async Task SendNotification()
+        private async Task SendNotification(Car[] carsToReview)
         {
             var message = new Message()
             {
                 Notification = new Notification
                 {
                     Title = "Powiadomienie",
-                    Body = "Zbliża się koniec terminu."
+                    Body = "Zbliża się koniec terminu dla: " + string.Join(", ", carsToReview.Select(x => x.Name).ToArray())
                 },
                 Topic = "main"
             };
