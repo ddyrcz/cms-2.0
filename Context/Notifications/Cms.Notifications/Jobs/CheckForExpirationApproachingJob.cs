@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Quartz;
 
-namespace CMS.Notifications.Host.Jobs
+namespace Cms.Notifications.Jobs
 {
     class CheckForExpirationApproachingJob : IJob
     {

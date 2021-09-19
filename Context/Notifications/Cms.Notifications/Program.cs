@@ -3,11 +3,10 @@ using Microsoft.Extensions.Logging;
 using Quartz;
 using TimeZoneConverter;
 using Microsoft.Extensions.Hosting;
-using CMS.Notifications.Host.Jobs;
-using System;
 using FirebaseAdmin;
+using Cms.Notifications.Jobs;
 
-namespace CMS.Notifications.Host
+namespace Cms.Notifications
 {
     public class Prorgam
     {
@@ -18,7 +17,7 @@ namespace CMS.Notifications.Host
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-           Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args)
+           Host.CreateDefaultBuilder(args)
            .ConfigureServices((hostContext, services) =>
            {
                services.AddLogging(configure => configure.AddConsole(opt =>
