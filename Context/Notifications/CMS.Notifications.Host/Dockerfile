@@ -7,8 +7,8 @@ RUN dotnet publish -c Release -o /out
 
 FROM microsoft/dotnet:2.2-sdk AS runtime
 
+ENV GOOGLE_APPLICATION_CREDENTIALS="/app/cms-evo-firebase-adminsdk.json"
 COPY --from=builder /out /app
-COPY --from=builder /app/cms-evo-firebase-adminsdk.json /app/cms-evo-firebase-adminsdk.json
 WORKDIR /app
 
 ENTRYPOINT [ "dotnet", "CMS.Notifications.Host.dll" ]

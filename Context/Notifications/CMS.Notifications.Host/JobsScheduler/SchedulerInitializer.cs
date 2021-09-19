@@ -15,7 +15,7 @@ namespace CMS.Notifications.Host.JobsScheduler
             LogProvider.SetCurrentLogProvider(new ConsoleLogProvider());
 
             var connectionString = configuration.GetConnectionString("CarsDbConnectionString");
-            var notifyAboutExpirationDaysBefore = configuration.GetConnectionString("NotifyAboutExpirationDaysBefore");
+            var notifyAboutExpirationDaysBefore = configuration.GetValue<int>("NotificationDaysBefore");
 
             try
             {
@@ -27,27 +27,23 @@ namespace CMS.Notifications.Host.JobsScheduler
                 var checkForExpirationApproachingJob = JobBuilder.Create<CheckForExpirationApproachingJob>()
                     .WithIdentity("mainJob")
                     .UsingJobData("connectionString", connectionString)
-                    .UsingJobData("notifyAboutExpirationDaysBefore", notifyAboutExpirationDaysBefore)
+                    .UsingJobData("notificationDaysBefore", notifyAboutExpirationDaysBefore)
                     .Build();
 
-                var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Central European Standard Time");
+                var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Europe/Warsaw");
 
                 var triggers = new[] {
                     TriggerBuilder.Create()
                         .StartNow()
-                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(12, 00).InTimeZone(timeZone))
+                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(09, 00).InTimeZone(timeZone))
                         .Build(),
                     TriggerBuilder.Create()
                         .StartNow()
                         .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(20, 00).InTimeZone(timeZone))
                         .Build(),
-                    TriggerBuilder.Create()
-                        .StartNow()
-                        .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(16, 40).InTimeZone(timeZone))
-                        .Build(),
                 };
 
-                await scheduler.ScheduleJob(checkForExpirationApproachingJob, triggers, false);
+                await scheduler.ScheduleJob(checkForExpirationApproachingJob, triggers, true);
             }
             catch (SchedulerException se)
             {
