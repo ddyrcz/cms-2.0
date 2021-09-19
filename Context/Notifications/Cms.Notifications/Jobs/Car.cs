@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CMS.Notifications.Host.Jobs
+namespace Cms.Notifications.Jobs
 {
     class Car
     {

@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMS.Cars.Autofac", "Context
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notifications", "Notifications", "{2287336D-09A4-4A98-866F-AF4853544FF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.Notifications.Host", "Context\Notifications\CMS.Notifications.Host\CMS.Notifications.Host.csproj", "{AFC2CE57-F87F-4440-ACDE-3F637A9738EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cms.Notifications", "Context\Notifications\Cms.Notifications\Cms.Notifications.csproj", "{2AAC8A80-33B3-41E6-A8D7-55AC4AFA824C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,10 +71,10 @@ Global
 		{302B847D-CCDB-4E69-96FA-59542C5C92FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{302B847D-CCDB-4E69-96FA-59542C5C92FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{302B847D-CCDB-4E69-96FA-59542C5C92FF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AFC2CE57-F87F-4440-ACDE-3F637A9738EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AFC2CE57-F87F-4440-ACDE-3F637A9738EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AFC2CE57-F87F-4440-ACDE-3F637A9738EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AFC2CE57-F87F-4440-ACDE-3F637A9738EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AAC8A80-33B3-41E6-A8D7-55AC4AFA824C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AAC8A80-33B3-41E6-A8D7-55AC4AFA824C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AAC8A80-33B3-41E6-A8D7-55AC4AFA824C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AAC8A80-33B3-41E6-A8D7-55AC4AFA824C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,7 +90,7 @@ Global
 		{7FE8AEA6-B75F-4224-B4D4-ACB41526CC98} = {714F7E22-DCDF-47C6-AB4A-8D566A85BB86}
 		{302B847D-CCDB-4E69-96FA-59542C5C92FF} = {714F7E22-DCDF-47C6-AB4A-8D566A85BB86}
 		{2287336D-09A4-4A98-866F-AF4853544FF1} = {C9D38D4D-87B1-4842-802C-D87155CC4C22}
-		{AFC2CE57-F87F-4440-ACDE-3F637A9738EB} = {2287336D-09A4-4A98-866F-AF4853544FF1}
+		{2AAC8A80-33B3-41E6-A8D7-55AC4AFA824C} = {2287336D-09A4-4A98-866F-AF4853544FF1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9753CC43-86E5-4C84-9862-7DE762E6C60F}
