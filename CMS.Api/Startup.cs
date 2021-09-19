@@ -26,10 +26,6 @@ namespace CMS.Api
         public Startup(IConfiguration configuration, ILogger<Startup> logger)
         {
             _configuration = configuration;
-
-            var connectionString = configuration.GetConnectionString("CarsDbConnectionString");
-
-            logger.LogInformation("Using connection string: {ConnectionString}", connectionString);
         }
 
         public void ConfigureServices(IServiceCollection services)
