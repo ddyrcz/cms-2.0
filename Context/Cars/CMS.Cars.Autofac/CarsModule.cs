@@ -34,7 +34,8 @@ namespace CMS.Cars.Application
         private void RegisterDbContext(ContainerBuilder builder)
         {
             var dbContextOptionsBuilder = new DbContextOptionsBuilder<CarsDbContext>();
-            dbContextOptionsBuilder.UseSqlServer(Configuration.GetValue<string>("ConnectionStrings:CarsDbConnectionString"));
+            var connectionString = Configuration.GetValue<string>("ConnectionStrings:CarsDbConnectionString");
+            dbContextOptionsBuilder.UseSqlServer(connectionString);
 
             var dbContextOptions = dbContextOptionsBuilder.Options;
 
